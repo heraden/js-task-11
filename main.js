@@ -1,19 +1,30 @@
-document.getElementById("bottom").addEventListener("click", function () { 
-  event.preventDefault(); 
-  let orderNumber = document.getElementById("number").value;
-  
-  let point1 = 0;
-  let point2 = 1;
+function getLoyaltyPoints(orderNumber) {
 
-  if (orderNumber <= 2) {
-    console.log(point2);
-  } else {
-    for (let i = 3; i <= orderNumber; i++) {
-      let sum = point1 + point2;
-      point1 = point2;
-      point2 = sum;
-    }
-    console.log(point2);
-  }
-});
+   let loyaltyPoints = 0;
 
+  let previousPoints = 0;
+
+  let currentPoints = 1;
+
+
+   for (let i = 1; i <= orderNumber; i++) {
+
+     if (i <= 2) {
+
+       loyaltyPoints = 1;
+
+     } else {
+
+      loyaltyPoints = previousPoints + currentPoints;
+
+     previousPoints = currentPoints;
+
+      currentPoints = loyaltyPoints;
+
+     }
+
+   }
+
+  return loyaltyPoints;
+
+ }
